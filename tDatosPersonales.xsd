@@ -6,7 +6,7 @@
         
     </xs:element>
     
-    <xs:complexType name= "tDatosPersonales">
+    <xs:complexType name= "tDatosPersonales" abstract="true">
         <xs:sequence>
             <xs:element name="Nombre" type="xs:string"/>
             <xs:element name="ApellidoPaterno" type="xs:string"/>
