@@ -2,30 +2,46 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     
     <!-- Definir la clase tDatosPersonales -->
-    <xs:element name="tDatosPersonales">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Nombre" type="xs:string"/>
-                <xs:element name="ApellidoPaterno" type="xs:string"/>
-                <xs:element name="ApellidoMaterno" type="xs:string"/>
-                <xs:element name="FechaNacimiento" type="xs:date"/>
-                <xs:element name="Genero" type="xs:string"/>
-                <xs:element name="Direccion">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="Calle" type="xs:string"/>
-                            <xs:element name="Numero" type="xs:int"/>
-                            <xs:element name="Colonia" type="xs:string"/>
-                            <xs:element name="Ciudad" type="xs:string"/>
-                            <xs:element name="Estado" type="xs:string"/>
-                            <xs:element name="CodigoPostal" type="xs:string"/>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="Telefono" type="xs:string"/>
-                <xs:element name="CorreoElectronico" type="xs:string"/>
-            </xs:sequence>
-        </xs:complexType>
+    <xs:element name="DatosPersonales" type="tDatosPersonales">
+        
     </xs:element>
     
+    <xs:complexType name= "tDatosPersonales">
+        <xs:sequence>
+            <xs:element name="Nombre" type="xs:string"/>
+            <xs:element name="ApellidoPaterno" type="xs:string"/>
+            <xs:element name="ApellidoMaterno" type="xs:string"/>
+            <xs:element name="FechaNacimiento" type="xs:date"/>
+            <xs:element name="Genero" type="xs:string"/>
+            <xs:element name="Direccion">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Calle" type="xs:string"/>
+                        <xs:element name="Numero" type="xs:int"/>
+                        <xs:element name="Colonia" type="xs:string"/>
+                        <xs:element name="Ciudad" type="xs:string"/>
+                        <xs:element name="Estado" type="xs:string"/>
+                        <xs:element name="CodigoPostal" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Telefono" type="xs:string"/>
+            <xs:element name="CorreoElectronico" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+        <xs:complexType name="tDatosPersonalesE" >
+            <xs:complexContent>
+                <xs:extension base="tDatosPersonales"> 
+                    <xs:sequence>
+                        <xs:element name="Origen" type="xs:string"/>
+                        <xs:element name="estado_civil" type="xs:string"/>
+                    </xs:sequence>                
+                </xs:extension>
+            </xs:complexContent>
+            
+        </xs:complexType>
+    
 </xs:schema>
+

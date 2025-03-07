@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DatosPersonales  xsi:type="tDatosPersonalesE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/C:/Users/pagaliv/Documents/practicas%20PL/tDatosPersonales.xsd">
+    <Nombre></Nombre>
+    <ApellidoPaterno></ApellidoPaterno>
+    <ApellidoMaterno></ApellidoMaterno>
+    <FechaNacimiento>2021-12-04</FechaNacimiento>
+    <Genero></Genero>
+    <Direccion>
+        <Calle></Calle>
+        <Numero>12</Numero>
+        <Colonia></Colonia>
+        <Ciudad></Ciudad>
+        <Estado></Estado>
+        <CodigoPostal></CodigoPostal>
+    </Direccion>
+    <Telefono></Telefono>
+    <CorreoElectronico></CorreoElectronico>
+    <Origen></Origen>
+    <estado_civil></estado_civil>
+</DatosPersonales>
