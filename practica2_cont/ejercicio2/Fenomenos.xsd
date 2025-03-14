@@ -16,6 +16,7 @@
             <xs:element name="nombre" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="desc" type="xs:string"/>
             <xs:element name="ID" type="xs:int"/>
+            <xs:element name="prob" type="xs:int"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -23,9 +24,9 @@
     <xs:element name="Fenomeno" type="meteorolog" />
     
     <!-- Definir el tipo 'libro' que extiende 'tArticulo' -->
-    <xs:complexType name="libro">
+    <xs:complexType name="lluvia">
         <xs:complexContent>
-            <xs:extension base="tArticulo">
+            <xs:extension base="meteorolog">
                 <xs:sequence>
                     <xs:element name="ISBN" type="xs:string"/>
                 </xs:sequence>
@@ -36,9 +37,9 @@
     
     
     <!-- Definir el tipo 'pelicula' que extiende 'tArticulo' -->
-    <xs:complexType name="pelicula">
+    <xs:complexType name="tormenta">
         <xs:complexContent>
-            <xs:extension base="tArticulo">
+            <xs:extension base="meteorolog">
                 <xs:sequence>
                     <xs:element name="Origen" type="xs:string"/>
                     <xs:element name="estado_civil" type="xs:string"/>
@@ -50,9 +51,9 @@
     
     
     <!-- Definir el tipo 'cd' que extiende 'tArticulo' -->
-    <xs:complexType name="cd">
+    <xs:complexType name="terremoto">
         <xs:complexContent>
-            <xs:extension base="tArticulo">
+            <xs:extension base="meteorolog">
                 <xs:sequence>
                     <xs:element name="Discografica" type="xs:string"/>
                 </xs:sequence>
@@ -63,6 +64,6 @@
     
     
     <!-- Definir el elemento 'Almacen' que hace referencia al tipo 'tAlmacen' -->
-    <xs:element name="Almacen" type="tAlmacen"/>
+    <xs:element name="Aemet" type="tAemet"/>
     
 </xs:schema>
