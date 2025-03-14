@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    
+    <!-- Definir el elemento abstracto 'expresionBooleana' -->
+    <xs:element name="expresionBooleana" type="tExpresionBooleana" abstract="true"/>
+    
+    <!-- Definir el tipo base 'tExpresionBooleana' -->
+    <xs:complexType name="tExpresionBooleana"></xs:complexType>
+    
+    <!-- Definir el tipo 'expresionConstante' -->
+    <xs:complexType name="tExpresionConstante">
+        <xs:complexContent>
+            <xs:extension base="tExpresionBooleana">
+                <xs:sequence>
+                    <xs:element name="valor" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- Definir el elemento 'expresionConstante' que sustituye 'expresionBooleana' -->
+    <xs:element name="expresionConstante" type="tExpresionConstante" substitutionGroup="expresionBooleana"/>
+    
+    <!-- Definir el tipo 'expresionVariable' -->
+    <xs:complexType name="tExpresionVariable">
+        <xs:complexContent>
+            <xs:extension base="tExpresionBooleana">
+                <xs:sequence>
+                    <xs:element name="nombre" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- Definir el elemento 'expresionVariable' que sustituye 'expresionBooleana' -->
+    <xs:element name="expresionVariable" type="tExpresionVariable" substitutionGroup="expresionBooleana"/>
+    
+    <!-- Definir el tipo 'expresionNot' -->
+    <xs:complexType name="tExpresionNot">
+        <xs:complexContent>
+            <xs:extension base="tExpresionBooleana">
+                <xs:sequence>
+                    <xs:element ref="expresionBooleana"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- Definir el elemento 'expresionNot' que sustituye 'expresionBooleana' -->
+    <xs:element name="expresionNot" type="tExpresionNot" substitutionGroup="expresionBooleana"/>
+    
+    <!-- Definir el tipo 'expresionAnd' -->
+    <xs:complexType name="tExpresionAnd">
+        <xs:complexContent>
+            <xs:extension base="tExpresionBooleana">
+                <xs:sequence>
+                    <xs:element ref="expresionBooleana" maxOccurs="unbounded" minOccurs="2"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- Definir el elemento 'expresionAnd' que sustituye 'expresionBooleana' -->
+    <xs:element name="expresionAnd" type="tExpresionAnd" substitutionGroup="expresionBooleana"/>
+    
+    <!-- Definir el tipo 'expresionOr' -->
+    <xs:complexType name="tExpresionOr">
+        <xs:complexContent>
+            <xs:extension base="tExpresionBooleana">
+                <xs:sequence>
+                    <xs:element ref="expresionBooleana" maxOccurs="unbounded" minOccurs="2"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- Definir el elemento 'expresionOr' que sustituye 'expresionBooleana' -->
+    <xs:element name="expresionOr" type="tExpresionOr" substitutionGroup="expresionBooleana"/>
+    
+</xs:schema>
