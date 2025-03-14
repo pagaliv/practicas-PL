@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Almacen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/C:/Users/pagaliv/Documents/GitHub/practicas-PL/practica2_cont/inventario2.xsd">
+    <Articulo xsi:type="pelicula">
+        <titulo></titulo>
+        <numeroEj>3</numeroEj>
+        <Origen></Origen>
+        <estado_civil></estado_civil>
+    </Articulo>
+</Almacen>

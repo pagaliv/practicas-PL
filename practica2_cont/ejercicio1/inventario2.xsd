@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    
+    <!-- Definir el tipo complejo 'tAlmacen' -->
+    <xs:complexType name="tAlmacen">
+        <xs:sequence>
+            <xs:element ref="Articulo" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Definir el tipo complejo 'tArticulo' -->
+    <xs:complexType name="tArticulo" abstract="true">
+        <xs:sequence>
+            <xs:element name="autor" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="titulo" type="xs:string"/>
+            <xs:element name="numeroEj" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Definir el elemento abstracto 'Articulo' -->
+    <xs:element name="Articulo" type="tArticulo" />
+    
+    <!-- Definir el tipo 'libro' que extiende 'tArticulo' -->
+    <xs:complexType name="libro">
+        <xs:complexContent>
+            <xs:extension base="tArticulo">
+                <xs:sequence>
+                    <xs:element name="ISBN" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    
+    
+    <!-- Definir el tipo 'pelicula' que extiende 'tArticulo' -->
+    <xs:complexType name="pelicula">
+        <xs:complexContent>
+            <xs:extension base="tArticulo">
+                <xs:sequence>
+                    <xs:element name="Origen" type="xs:string"/>
+                    <xs:element name="estado_civil" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    
+    
+    <!-- Definir el tipo 'cd' que extiende 'tArticulo' -->
+    <xs:complexType name="cd">
+        <xs:complexContent>
+            <xs:extension base="tArticulo">
+                <xs:sequence>
+                    <xs:element name="Discografica" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+   
+    
+    <!-- Definir el elemento 'Almacen' que hace referencia al tipo 'tAlmacen' -->
+    <xs:element name="Almacen" type="tAlmacen"/>
+    
+</xs:schema>
