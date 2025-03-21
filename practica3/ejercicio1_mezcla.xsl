@@ -11,14 +11,18 @@
             <body>
                 <h1>Alumnos y Asignaturas Superadas</h1>
                 <ul>
-                    <xsl:apply-templates/>
+                    <xsl:apply-templates select="alumno"/>
                 </ul>
             </body>
         </html>
     </xsl:template>
     <xsl:template match="alumno">
         <li>
-            
+            <strong>
+                <xsl:value-of select="datosPersonales/nombre"/>
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="datosPersonales/apellido"/>
+            </strong>
             <ul>
                 <xsl:for-each select="asignaturas/asignatura[calificacion >= 5]">
                     <li>
@@ -31,14 +35,4 @@
             </ul>
         </li>
     </xsl:template>
-        
-            <xsl:template match="datosPersonales">
-                <strong>
-                    <xsl:value-of select="nombre"/>
-                    <xsl:text> </xsl:text>
-                    <xsl:value-of select="apellido"/>
-                </strong>
-            </xsl:template>
-        
-    
 </xsl:stylesheet>
