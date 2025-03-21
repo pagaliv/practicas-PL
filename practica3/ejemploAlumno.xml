@@ -3,21 +3,23 @@
     xsi:noNamespaceSchemaLocation="file:/C:/Users/pagaliv/Documents/GitHub/practicas-PL/practica3/alumno.xsd">
     <alumno>
         <datosPersonales>
-            <nombre></nombre>
-            <apellido></apellido>
+            <nombre>Paco</nombre>
+            <apellido>meloso</apellido>
             <edad>3</edad>
-            <direccion></direccion>
+            <direccion>detector de humos</direccion>
         </datosPersonales>
         <asignaturas>
             <asignatura>
-                <nombreAsignatura></nombreAsignatura>
+                <nombreAsignatura>ccr</nombreAsignatura>
                 <creditos>3</creditos>
                 <profesor></profesor>
+                <calificacion>6</calificacion>
             </asignatura>
             <asignatura>
-                <nombreAsignatura></nombreAsignatura>
+                <nombreAsignatura>CCT</nombreAsignatura>
                 <creditos>3</creditos>
                 <profesor></profesor>
+                <calificacion>3</calificacion>
             </asignatura>
         </asignaturas>
     </alumno>

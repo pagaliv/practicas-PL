@@ -31,6 +31,7 @@
                                                     <xs:element name="nombreAsignatura" type="xs:string"/>
                                                     <xs:element name="creditos" type="xs:integer"/>
                                                     <xs:element name="profesor" type="xs:string"/>
+                                                    <xs:element name="calificacion" type="xs:integer"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
