@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alumnos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/C:/Users/pagaliv/Documents/GitHub/practicas-PL/practica3/alumno.xsd">
+    <alumno>
+        <datosPersonales>
+            <nombre></nombre>
+            <apellido></apellido>
+            <edad>3</edad>
+            <direccion></direccion>
+        </datosPersonales>
+        <asignaturas>
+            <asignatura>
+                <nombreAsignatura></nombreAsignatura>
+                <creditos>3</creditos>
+                <profesor></profesor>
+            </asignatura>
+            <asignatura>
+                <nombreAsignatura></nombreAsignatura>
+                <creditos>3</creditos>
+                <profesor></profesor>
+            </asignatura>
+        </asignaturas>
+    </alumno>
+</alumnos>

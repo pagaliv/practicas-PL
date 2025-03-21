@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <!-- Definición del elemento raíz 'alumnos' -->
+    <xs:element name="alumnos">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Cada 'alumno' es un elemento dentro de 'alumnos' -->
+                <xs:element name="alumno" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <!-- 'datosPersonales' contiene información personal del alumno -->
+                            <xs:element name="datosPersonales">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="nombre" type="xs:string"/>
+                                        <xs:element name="apellido" type="xs:string"/>
+                                        <xs:element name="edad" type="xs:integer"/>
+                                        <xs:element name="direccion" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <!-- 'asignaturas' contiene una lista de asignaturas -->
+                            <xs:element name="asignaturas">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <!-- Cada 'asignatura' es un elemento dentro de 'asignaturas' -->
+                                        <xs:element name="asignatura" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="nombreAsignatura" type="xs:string"/>
+                                                    <xs:element name="creditos" type="xs:integer"/>
+                                                    <xs:element name="profesor" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>
