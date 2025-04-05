@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
     Transformación XSLT 1.0 para generar un reporte HTML de futbolistas "horteras"
-    Autor: [Tu nombre]
-    Fecha: [Fecha]
+    Autor: Pablo Galilea
+    Fecha: 03-05-2025
     Entrada: XML de deportistas favoritos
     Salida: HTML con tabla de futbolistas hortera ordenados por goles
 -->
