@@ -8,7 +8,7 @@
       - Atletas con más de X medallas (parámetro)
       - Todos los baloncestistas
 -->
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet version="2.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:df="http://www.ejemplo.org/deportistasFavoritos"
     xmlns:dep="http://www.ejemplo.org/deportistas"
