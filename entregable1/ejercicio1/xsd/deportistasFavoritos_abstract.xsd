@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Esquema XSD para deportistas favoritos - Versión con abstracción
+    Autor: [Tu nombre]
+    Fecha: [Fecha]
+    Descripción: Este esquema valida documentos XML que contienen información
+    sobre deportistas favoritos utilizando mecanismos de abstracción como
+    elementos abstractos y grupos de sustitución.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.ejemplo.org/deportistasFavoritos"
+    xmlns:df="http://www.ejemplo.org/deportistasFavoritos"
+    xmlns:dep="http://www.ejemplo.org/deportistas"
+    elementFormDefault="qualified">
+    
+    <!-- Importación del esquema de deportistas base -->
+    <xs:import namespace="http://www.ejemplo.org/deportistas" 
+        schemaLocation="deportistas.xsd"/>
+    
+    <!-- Elemento raíz del documento -->
+    <xs:element name="deportistasFavoritos">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- 
+                    Referencia al elemento abstracto deportista
+                    Puede ser sustituido por cualquier elemento del grupo de sustitución
+                -->
+                <xs:element ref="df:deportista" maxOccurs="unbounded"/>
+                <!-- Elemento para comentarios adicionales -->
+                <xs:element name="comentarios" type="xs:string"/>
+            </xs:sequence>
+            <!-- Atributos del elemento raíz -->
+            <xs:attribute name="agno" type="xs:gYear" use="required"/>
+            <xs:attribute name="pais" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- 
+        Elemento abstracto deportista: 
+        - abstract="true" indica que no puede aparecer directamente en el documento
+        - Será sustituido por elementos concretos del grupo de sustitución
+    -->
+    <xs:element name="deportista" abstract="true"/>
+    
+    <!-- 
+        Elemento atleta: 
+        - Pertenece al grupo de sustitución de deportista
+        - Extiende el tipo base deportistaType
+        - Contiene un elemento atleta del namespace de deportistas
+    -->
+    <xs:element name="atleta" substitutionGroup="df:deportista">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="df:deportistaType">
+                    <xs:sequence>
+                        <xs:element ref="dep:atleta"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- 
+        Elemento futbolista: 
+        - Pertenece al grupo de sustitución de deportista
+        - Extiende el tipo base deportistaType
+        - Contiene un elemento futbolista del namespace de deportistas
+    -->
+    <xs:element name="futbolista" substitutionGroup="df:deportista">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="df:deportistaType">
+                    <xs:sequence>
+                        <xs:element ref="dep:futbolista"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- 
+        Elemento baloncestista: 
+        - Pertenece al grupo de sustitución de deportista
+        - Extiende el tipo base deportistaType
+        - Contiene un elemento baloncestista del namespace de deportistas
+    -->
+    <xs:element name="baloncestista" substitutionGroup="df:deportista">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="df:deportistaType">
+                    <xs:sequence>
+                        <xs:element ref="dep:baloncestista"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- 
+        Tipo base abstracto para deportistas:
+        - abstract="true" indica que no se puede usar directamente
+        - Será extendido por tipos concretos de deportistas
+        - Define el atributo común "tipo" con valores restringidos
+    -->
+    <xs:complexType name="deportistaType" abstract="true">
+        <xs:attribute name="tipo" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="atleta"/>
+                    <xs:enumeration value="futbolista"/>
+                    <xs:enumeration value="baloncestista"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:schema>
