@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<df:deportistasFavoritos 
+    xmlns:df="http://www.ejemplo.org/deportistasFavoritos"
+    xmlns:dep="http://www.ejemplo.org/deportistas"
+    xmlns:comp="http://www.ejemplo.org/competiciones"
+    agno="2025" pais="España">
+    
+    <df:deportista tipo="atleta">
+        <dep:atleta idDepor="78" Individual="true" activo="true">
+            <dep:nombre completo="Carl Lewis">Carl</dep:nombre>
+            <dep:fechaNacimiento>1961-07-01</dep:fechaNacimiento>
+            <dep:disciplina olimpica="true">100 metros lisos</dep:disciplina>
+            <dep:medallas tipo="total">12</dep:medallas>
+            <dep:medallas tipo="oro">9</dep:medallas>
+            <dep:medallas tipo="plata">1</dep:medallas>
+            <dep:medallas tipo="bronce">2</dep:medallas>
+            <comp:record tipo="mundial" año="1991">9.86</comp:record>
+        </dep:atleta>
+    </df:deportista>
+    
+    <df:deportista tipo="futbolista">
+        <dep:futbolista hortera="true" idDepor="67" Individual="false">
+            <dep:nombre completo="Cristiano Ronaldo">Cristi</dep:nombre>
+            <dep:fechaNacimiento>1985-02-05</dep:fechaNacimiento>
+            <dep:equipo pais="Portugal">Sporting Lisboa</dep:equipo>
+            <dep:posicion principal="delantero">delantero centro</dep:posicion>
+            <dep:numGoles temporada="2024-2025">15</dep:numGoles>
+            <dep:numGoles tipo="total">832</dep:numGoles>
+            <comp:trofeos>5 Champions League</comp:trofeos>
+        </dep:futbolista>
+    </df:deportista>
+    
+    <df:deportista tipo="baloncestista">
+        <dep:baloncestista idDepor="3" Individual="false" retirado="true">
+            <dep:nombre completo="Michael Jordan">jordan</dep:nombre>
+            <dep:fechaNacimiento>1963-02-17</dep:fechaNacimiento>
+            <dep:equipo pais="USA">Chicago Bulls</dep:equipo>
+            <dep:posicion principal="alero">escolta</dep:posicion>
+            <dep:puntos temporada="1995-1996">2491</dep:puntos>
+            <dep:puntos tipo="total">32292</dep:puntos>
+            <comp:trofeos>6 anillos NBA</comp:trofeos>
+        </dep:baloncestista>
+    </df:deportista>
+    
+    <df:deportista tipo="futbolista">
+        <dep:futbolista hortera="false" idDepor="67" Individual="false">
+            <dep:nombre completo="Pepe Reina">pepe</dep:nombre>
+            <dep:fechaNacimiento>1982-08-31</dep:fechaNacimiento>
+            <dep:equipo pais="España">mirandes</dep:equipo>
+            <dep:posicion principal="portero">portero</dep:posicion>
+            <dep:numGoles temporada="2024-2025">0</dep:numGoles>
+            <dep:numGoles tipo="total">1</dep:numGoles>
+            <comp:trofeos>1 Mundial</comp:trofeos>
+        </dep:futbolista>
+    </df:deportista>
+    
+    <df:deportista tipo="atleta">
+        <dep:atleta idDepor="23" Individual="true" activo="false">
+            <dep:nombre completo="John Walker">john</dep:nombre>
+            <dep:fechaNacimiento>1952-01-12</dep:fechaNacimiento>
+            <dep:disciplina olimpica="true">1500 metros lisos</dep:disciplina>
+            <dep:medallas tipo="total">3</dep:medallas>
+            <dep:medallas tipo="oro">1</dep:medallas>
+            <dep:medallas tipo="plata">2</dep:medallas>
+            <comp:record tipo="personal" año="1975">3:32.4</comp:record>
+        </dep:atleta>
+    </df:deportista>
+    
+    <df:comentarios autor="Juan Pérez" fecha="2025-04-15">
+        En 2025 mis favoritos eran pocos pero muy destacados en sus disciplinas.
+        Incluyo tanto deportistas activos como retirados que han marcado época.
+    </df:comentarios>
+</df:deportistasFavoritos>
