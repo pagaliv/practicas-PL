@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.ejemplo.org/competiciones"
+    xmlns:comp="http://www.ejemplo.org/competiciones"
+    elementFormDefault="qualified">
+    
+    <xs:element name="record">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="tipo" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="mundial"/>
+                                <xs:enumeration value="olimpico"/>
+                                <xs:enumeration value="personal"/>
+                                <xs:enumeration value="nacional"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="año" type="xs:gYear"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="trofeos" type="xs:string"/>
+</xs:schema>

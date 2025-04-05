@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Esquema XSD para deportistas favoritos - Versión sin abstracción
+    Autor: Pablo Galilea
+    Fecha: 03-04-2025
+    Descripción: Este esquema valida documentos XML que contienen información
+    sobre deportistas favoritos sin utilizar mecanismos de abstracción.
+    Utiliza definiciones concretas para cada tipo de deportista.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.ejemplo.org/deportistasFavoritos"
+    xmlns:df="http://www.ejemplo.org/deportistasFavoritos"
+    xmlns:dep="http://www.ejemplo.org/deportistas"
+    elementFormDefault="qualified">
+    
+    <!-- Importación del esquema de deportistas que contiene las definiciones básicas -->
+    <xs:import namespace="http://www.ejemplo.org/deportistas" 
+        schemaLocation="deportistas.xsd"/>
+    
+    <!-- Elemento raíz del documento -->
+    <xs:element name="deportistasFavoritos">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- 
+                    Elemento deportista: Puede contener cualquier tipo de deportista
+                    Se permite múltiples ocurrencias (maxOccurs="unbounded")
+                -->
+                <xs:element name="deportista" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <!-- Choice permite seleccionar uno de los tipos de deportista -->
+                        <xs:choice>
+                            <xs:element ref="dep:atleta"/>
+                            <xs:element ref="dep:futbolista"/>
+                            <xs:element ref="dep:baloncestista"/>
+                        </xs:choice>
+                        <!-- 
+                            Atributo tipo: Obligatorio para identificar el tipo de deportista
+                            Se restringe a valores específicos mediante enumeración
+                        -->
+                        <xs:attribute name="tipo" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="atleta"/>
+                                    <xs:enumeration value="futbolista"/>
+                                    <xs:enumeration value="baloncestista"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <!-- Elemento para comentarios adicionales -->
+                <xs:element name="comentarios" type="xs:string"/>
+            </xs:sequence>
+            <!-- 
+                Atributos del elemento raíz:
+                - agno: Año de referencia (requerido, tipo gYear)
+                - pais: País de referencia (opcional)
+            -->
+            <xs:attribute name="agno" type="xs:gYear" use="required"/>
+            <xs:attribute name="pais" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

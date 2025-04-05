@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Esquema XSD para definiciones básicas de deportistas
+    Autor: [Tu nombre]
+    Fecha: [Fecha]
+    Descripción: Este esquema contiene las definiciones comunes para los
+    diferentes tipos de deportistas (atletas, futbolistas, baloncestistas).
+    Es importado por los esquemas principales.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.ejemplo.org/deportistas"
+    xmlns:dep="http://www.ejemplo.org/deportistas"
+    xmlns:comp="http://www.ejemplo.org/competiciones"
+    elementFormDefault="qualified">
+    <!-- 
+        Import del xsd competición, porque lo uso aqui 
+        
+     -->
+    <xs:import 
+        namespace="http://www.ejemplo.org/competiciones" 
+        schemaLocation="competiciones.xsd" /> 
+    <!-- 
+        Tipo para el elemento nombre:
+        - Contiene el nombre corto como valor simple
+        - Incluye un atributo "completo" con el nombre completo
+    -->
+    <xs:complexType name="nombreType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="completo" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <!-- Elemento atleta: Define la estructura de un atleta -->
+    <xs:element name="atleta">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Nombre del atleta usando el tipo definido -->
+                <xs:element name="nombre" type="dep:nombreType"/>
+                <!-- Fecha de nacimiento con validación de tipo fecha -->
+                <xs:element name="fechaNacimiento" type="xs:date"/>
+                <!-- 
+                    Disciplina del atleta:
+                    - Valor simple con el nombre de la disciplina
+                    - Atributo que indica si es olímpica
+                -->
+                <xs:element name="disciplina">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="olimpica" type="xs:boolean" use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <!-- 
+                    Elemento medallas: Puede aparecer múltiples veces
+                    - Distingue por el atributo "tipo" (oro, plata, bronce, total)
+                    - Valor es un entero positivo
+                -->
+                <xs:element name="medallas" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:positiveInteger">
+                                <xs:attribute name="tipo" use="required">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="total"/>
+                                            <xs:enumeration value="oro"/>
+                                            <xs:enumeration value="plata"/>
+                                            <xs:enumeration value="bronce"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <!-- Referencia a elemento record del namespace de competiciones -->
+                <xs:element ref="comp:record" minOccurs="0"/>
+            </xs:sequence>
+            <!-- Atributos del atleta -->
+            <xs:attribute name="idDepor" type="xs:positiveInteger" use="required"/>
+            <xs:attribute name="Individual" type="xs:boolean" use="required"/>
+            <xs:attribute name="activo" type="xs:boolean"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- Elemento futbolista: Define la estructura de un futbolista -->
+    <xs:element name="futbolista">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="dep:nombreType"/>
+                <xs:element name="fechaNacimiento" type="xs:date"/>
+                <!-- 
+                    Equipo del futbolista:
+                    - Valor simple con el nombre del equipo
+                    - Atributo opcional con el país
+                -->
+                <xs:element name="equipo">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="pais" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <!-- 
+                    Posición del jugador:
+                    - Valor simple con la posición detallada
+                    - Atributo con la posición principal
+                -->
+                <xs:element name="posicion">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="principal" type="xs:string" use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <!-- 
+                    Número de goles:
+                    - Puede aparecer múltiples veces (total y por temporada)
+                    - Valor es entero no negativo
+                    - Se distingue por el atributo "tipo"
+                -->
+                <xs:element name="numGoles" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:nonNegativeInteger">
+                                <xs:attribute name="tipo">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="total"/>
+                                            <xs:enumeration value="temporada"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                                <xs:attribute name="temporada" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <!-- Referencia a elemento trofeos del namespace de competiciones -->
+                <xs:element ref="comp:trofeos" minOccurs="0"/>
+            </xs:sequence>
+            <!-- Atributos del futbolista -->
+            <xs:attribute name="idDepor" type="xs:positiveInteger" use="required"/>
+            <xs:attribute name="Individual" type="xs:boolean" use="required"/>
+            <xs:attribute name="hortera" type="xs:boolean" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- Elemento baloncestista: Define la estructura de un baloncestista -->
+    <xs:element name="baloncestista">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="dep:nombreType"/>
+                <xs:element name="fechaNacimiento" type="xs:date"/>
+                <!-- Equipo del baloncestista (similar a futbolista) -->
+                <xs:element name="equipo">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="pais" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <!-- Posición del baloncestista (similar a futbolista) -->
+                <xs:element name="posicion">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="principal" type="xs:string" use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <!-- 
+                    Puntos anotados:
+                    - Similar estructura a numGoles del futbolista
+                    - Puede distinguir entre total y por temporada
+                -->
+                <xs:element name="puntos" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:nonNegativeInteger">
+                                <xs:attribute name="tipo">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="total"/>
+                                            <xs:enumeration value="temporada"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                                <xs:attribute name="temporada" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <!-- Referencia a elemento trofeos del namespace de competiciones -->
+                <xs:element ref="comp:trofeos" minOccurs="0"/>
+            </xs:sequence>
+            <!-- Atributos del baloncestista -->
+            <xs:attribute name="idDepor" type="xs:positiveInteger" use="required"/>
+            <xs:attribute name="Individual" type="xs:boolean" use="required"/>
+            <xs:attribute name="retirado" type="xs:boolean"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
