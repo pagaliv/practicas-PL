@@ -1,0 +1,10 @@
+Debido a que no se pueden poner comentarios en el XML porque al pasarlo, cuenta los comentarios como nodos, dejo documentado
+aqui las respectivas mejoras:
+
+- Namespaces propios siendo el base dep 
+
+- Más atributos y subelementos
+
+- Tipos de deportistas adicionales
+
+- Metadatos adicionales
