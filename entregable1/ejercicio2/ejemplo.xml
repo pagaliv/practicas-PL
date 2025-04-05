@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:expresion xmlns:m="http://www.ejemplo.org/matexpr"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ejemplo.org/matexpr expresiones.xsd">
+    
+    <!-- Representa: -x + ((3 * y) - 7) -->
+    <m:suma>
+        <m:resta>
+            <m:valor>0</m:valor>  <!-- Cero para simular operador unario -->
+            <m:variable>x</m:variable>
+        </m:resta>
+        <m:resta>
+            <m:multiplicacion>
+                <m:valor>3</m:valor>
+                <m:variable>y</m:variable>
+            </m:multiplicacion>
+            <m:valor>7</m:valor>
+        </m:resta>
+    </m:suma>
+    
+    <!-- Contexto: x=5, y=7 -->
+    <m:contexto>
+        <m:asignacion var="x">5</m:asignacion>
+        <m:asignacion var="y">7</m:asignacion>
+    </m:contexto>
+</m:expresion>

@@ -1,2 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"> </xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.ejemplo.org/matexpr"
+    xmlns:m="http://www.ejemplo.org/matexpr"
+    elementFormDefault="qualified">
+    
+    <!-- 1. Definición de tipos básicos -->
+    <xs:simpleType name="entero">
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+    
+    <xs:simpleType name="nombreVariable">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-z][a-zA-Z0-9_]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- 2. Elemento raíz -->
+    <xs:element name="expresion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="m:nodo"/>
+                <xs:element name="contexto" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="asignacion" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="m:entero">
+                                            <xs:attribute name="var" type="m:nombreVariable" use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- 3. Definición abstracta de nodo -->
+    <xs:element name="nodo" abstract="true"/>
+    
+    <!-- 4. Tipos concretos de nodos -->
+    <xs:element name="valor" substitutionGroup="m:nodo">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="m:entero"/>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="variable" substitutionGroup="m:nodo">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="m:nombreVariable"/>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="suma" substitutionGroup="m:nodo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="m:nodo" minOccurs="2" maxOccurs="2"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="resta" substitutionGroup="m:nodo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="m:nodo" minOccurs="2" maxOccurs="2"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="multiplicacion" substitutionGroup="m:nodo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="m:nodo" minOccurs="2" maxOccurs="2"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
